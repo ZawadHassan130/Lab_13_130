@@ -29,11 +29,11 @@ public class RandomGenerator {
 
     /* Generates Random ID for the Customers....*/
     public void randomIDGen() {
-        Random rand = new Random();
-        String randomID = Integer.toString(rand.nextInt(1000000));
+        Random random_number_generator = new Random();
+        String randomID = Integer.toString(random_number_generator.nextInt(1000000));
 
         while (Integer.parseInt(randomID) < 20000) {
-            randomID = Integer.toString(rand.nextInt(1000000));
+            randomID = Integer.toString(random_number_generator.nextInt(1000000));
         }
         setRandomNum(randomID);
     }
