@@ -76,7 +76,7 @@ public class User {
                     System.out.println(
                             "You've standard/default privileges to access the data... You can just view customers data..."
                                     + "Can't perform any actions on them....");
-                    c1.displayCustomersData(true);
+                    Customer_Service.displayCustomersData(true);
                 } else {
                     System.out.printf(
                             "%-20sLogged in Successfully as \"%s\"..... For further Proceedings, enter a value from below....",
@@ -92,7 +92,7 @@ public class User {
                                 "", username);
                         System.out.printf("%-30s (a) Enter 1 to add new Passenger....\n", "");
                         System.out.printf("%-30s (b) Enter 2 to search a Passenger....\n", "");
-                        System.out.printf("%-30s (c) Enter 3 to update the Data of the Passenger....\n", "");
+                        System.out.printf("%-30s (c) Enter 3 to update the Data of the Passenger....\n", "");//admin cant update passenger info
                         System.out.printf("%-30s (d) Enter 4 to delete a Passenger....\n", "");
                         System.out.printf("%-30s (e) Enter 5 to Display all Passengers....\n", "");
                         System.out.printf("%-30s (f) Enter 6 to Display all flights registered by a Passenger...\n",
@@ -106,18 +106,18 @@ public class User {
                         /* If 1 is entered by the privileged user, then add a new customer...... */
                         if (desiredOption == 1) {
                            
-                            c1.addNewCustomer();
+                            Customer_Service.addNewCustomer();
                         } else if (desiredOption == 2) {
                             /*
                              * If 2 is entered by the privileged user, then call the search method of the
                              * Customer class
                              */
                             
-                            c1.displayCustomersData(false);
+                            Customer_Service.displayCustomersData(false);
                             System.out.print("Enter the CustomerID to Search :\t");
                             String customerID = read1.nextLine();
                             System.out.println();
-                            c1.searchUser(customerID);
+                            Customer_Service.searchUser(customerID);
                         } else if (desiredOption == 3) {
                             /*
                              * If 3 is entered by the user, then call the update method of the Customer
@@ -125,11 +125,11 @@ public class User {
                              * arguments.....
                              */
                             
-                            c1.displayCustomersData(false);
+                            Customer_Service.displayCustomersData(false);
                             System.out.print("Enter the CustomerID to Update its Data :\t");
                             String customerID = read1.nextLine();
-                            if (customersCollection.size() > 0) {
-                                c1.editUserInfo(customerID);
+                            if (!User_Data.customers.isEmpty()) {
+                                Customer_Service.editUserInfo(customerID);
                             } else {
                                 System.out.printf("%-50sNo Customer with the ID %s Found...!!!\n", " ", customerID);
                             }
@@ -139,19 +139,19 @@ public class User {
                              * If 4 is entered, then ask the user to enter the customer id, and then delete
                              * that customer....
                              */
-                            c1.displayCustomersData(false);
+                                Customer_Service.displayCustomersData(false);
                             System.out.print("Enter the CustomerID to Delete its Data :\t");
                             String customerID = read1.nextLine();
-                            if (customersCollection.size() > 0) {
-                                c1.deleteUser(customerID);
+                            if (!User_Data.customers.isEmpty()) {
+                                Customer_Service.deleteUser(customerID);
                             } else {
                                 System.out.printf("%-50sNo Customer with the ID %s Found...!!!\n", " ", customerID);
                             }
                         } else if (desiredOption == 5) {
                             /* Call the Display Method of Customer Class.... */
-                            c1.displayCustomersData(false);
+                            Customer_Service.displayCustomersData(false);
                         } else if (desiredOption == 6) {
-                            c1.displayCustomersData(false);
+                            Customer_Service.displayCustomersData(false);
                             System.out.print(
                                     "\n\nEnter the ID of the user to display all flights registered by that user...");
                             String id = read1.nextLine();
@@ -255,13 +255,13 @@ public class User {
                             bookingAndReserving.bookFlight(flightToBeBooked, numOfTickets, result[1]);
                         } else if (desiredChoice == 2) {
 
-                            c1.editUserInfo(result[1]);
+                                Customer_Service.editUserInfo(result[1]);
                         } else if (desiredChoice == 3) {
                             System.out.print(
                                     "Are you sure to delete your account...It's an irreversible action...Enter Y/y to confirm...");
                             char confirmationChar = read1.nextLine().charAt(0);
                             if (confirmationChar == 'Y' || confirmationChar == 'y') {
-                                c1.deleteUser(result[1]);
+                                Customer_Service.deleteUser(result[1]);
                                 System.out.printf("User %s's account deleted Successfully...!!!", userName);
                                 desiredChoice = 0;
                             } else {
@@ -294,7 +294,7 @@ public class User {
                 }
             } else if (desiredOption == 4) {
 
-                c1.addNewCustomer();
+                Customer_Service.addNewCustomer();
             } else if (desiredOption == 5) {
                 manualInstructions();
             }
@@ -309,7 +309,7 @@ public class User {
 
     }
 
-    static void displayMainMenu() {
+    static void displayMainMenu() {//add to display class
         System.out.println("\n\n\t\t(a) Press 0 to Exit.");
         System.out.println("\t\t(b) Press 1 to Login as admin.");
         System.out.println("\t\t(c) Press 2 to Register as admin.");
