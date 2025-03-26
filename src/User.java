@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class User {
+
+    public static final String Default_Admin_Username = "root";
+    public static final String Default_Admin_password = "root";
 
     // ************************************************************ Fields
     // ************************************************************
@@ -17,7 +21,7 @@ public class User {
      * 2D Array to store admin credentials. Default credentials are stored on [0][0]
      * index. Max num of admins can be 10....
      */
-    static String[][] adminUserNameAndPassword = new String[10][2];
+    //static String[][] adminUserNameAndPassword = new String[10][2];
    // private static List<Customer> customersCollection = new ArrayList<>();
 
     // ************************************************************
@@ -25,7 +29,7 @@ public class User {
     // ************************************************************
 
     public static void main(String[] args) {
-        int countNumOfUsers = 1;
+        //int countNumOfUsers = 1;
         RolesAndPermissions r1 = new RolesAndPermissions();
         Flight f1 = new Flight();
         FlightReservation bookingAndReserving = new FlightReservation();
@@ -58,8 +62,8 @@ public class User {
             if (desiredOption == 1) {
 
                 /* Default username and password.... */
-                adminUserNameAndPassword[0][0] = "root";
-                adminUserNameAndPassword[0][1] = "root";
+                //adminUserNameAndPassword[0][0] = "root";
+                //adminUserNameAndPassword[0][1] = "root";
                 
                 System.out.print("\nEnter the UserName to login to the Management System :     ");
                 String username = read1.nextLine();
@@ -68,11 +72,11 @@ public class User {
                 System.out.println();
 
                 /* Checking the RolesAndPermissions...... */
-                if (r1.isPrivilegedUserOrNot(username, password) == -1) {
+                if (!r1.isPrivilegedUserOrNot(username, password)) {
                     System.out.printf(
                             "\n%20sERROR!!! Unable to login Cannot find user with the entered credentials.... Try Creating New Credentials or get yourself register by pressing 4....\n",
                             "");
-                } else if (r1.isPrivilegedUserOrNot(username, password) == 0) {
+                } else if (username.equals(Default_Admin_Username) && password.equals(Default_Admin_password)) {
                     System.out.println(
                             "You've standard/default privileges to access the data... You can just view customers data..."
                                     + "Can't perform any actions on them....");
@@ -190,7 +194,7 @@ public class User {
                 String username = read1.nextLine();
                 System.out.print("Enter the Password to Register :     ");
                 String password = read1.nextLine();
-                while (r1.isPrivilegedUserOrNot(username, password) != -1) {
+                while (r1.isPrivilegedUserOrNot(username, password)) {
                     System.out.print("ERROR!!! Admin with same UserName already exist. Enter new UserName:   ");
                     username = read1.nextLine();
                     System.out.print("Enter the Password Again:   ");
@@ -198,12 +202,9 @@ public class User {
                 }
 
                 /* Setting the credentials entered by the user..... */
-                adminUserNameAndPassword[countNumOfUsers][0] = username;
-                adminUserNameAndPassword[countNumOfUsers][1] = password;
+                User_Data.admins.add(new Admin(username, password));
 
-                /* Incrementing the numOfUsers */
-                countNumOfUsers++;
-            } else if (desiredOption == 3) {
+            }else if (desiredOption == 3) {
                 System.out.print("\n\nEnter the Email to Login : \t");
                 String userName = read1.nextLine();
                 System.out.print("Enter the Password : \t");
