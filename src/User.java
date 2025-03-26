@@ -14,19 +14,6 @@ public class User {
     public static final String Default_Admin_Username = "root";
     public static final String Default_Admin_password = "root";
 
-    // ************************************************************ Fields
-    // ************************************************************
-
-    /*
-     * 2D Array to store admin credentials. Default credentials are stored on [0][0]
-     * index. Max num of admins can be 10....
-     */
-    //static String[][] adminUserNameAndPassword = new String[10][2];
-   // private static List<Customer> customersCollection = new ArrayList<>();
-
-    // ************************************************************
-    // Behaviours/Methods
-    // ************************************************************
 
     public static void main(String[] args) {
         //int countNumOfUsers = 1;
@@ -61,10 +48,6 @@ public class User {
              */
             if (desiredOption == 1) {
 
-                /* Default username and password.... */
-                //adminUserNameAndPassword[0][0] = "root";
-                //adminUserNameAndPassword[0][1] = "root";
-                
                 System.out.print("\nEnter the UserName to login to the Management System :     ");
                 String username = read1.nextLine();
                 System.out.print("Enter the Password to login to the Management System :    ");

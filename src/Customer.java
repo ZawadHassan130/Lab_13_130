@@ -30,17 +30,7 @@ public class Customer {
         this.age = 0;
     }
 
-    /**
-     * Registers new customer to the program. Obj of RandomGenerator(Composition) is
-     * being used to assign unique userID to the newly created customer.
-     *
-     * @param name     name of the customer
-     * @param email    customer's email
-     * @param password customer's account password
-     * @param phone    customer's phone-number
-     * @param address  customer's address
-     * @param age      customer's age
-     */
+
     Customer(String name, String email, String password, String phone, String address, int age) {
 
 
