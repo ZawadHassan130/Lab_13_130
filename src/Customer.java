@@ -4,11 +4,11 @@ public class Customer {
 
     // ************************************************************ Fields
     // ************************************************************
+    private String name;
+    private final String password;
     private final String userID;
     private String email;
-    private String name;
     private String phone;
-    private final String password;
     private String address;
     private int age;
     public List<Flight> flightsRegisteredByUser;
@@ -20,10 +20,11 @@ public class Customer {
     // ************************************************************
 
     Customer() {
-        this.userID = null;
+
         this.name = null;
-        this.email = null;
         this.password = null;
+        this.userID = null;
+        this.email = null;
         this.phone = null;
         this.address = null;
         this.age = 0;
@@ -41,12 +42,14 @@ public class Customer {
      * @param age      customer's age
      */
     Customer(String name, String email, String password, String phone, String address, int age) {
+
+
         RandomGenerator random = new RandomGenerator();
         random.randomIDGen();
         this.name = name;
+        this.password = password;
         this.userID = random.getRandomNumber();
         this.email = email;
-        this.password = password;
         this.phone = phone;
         this.address = address;
         this.age = age;
@@ -54,13 +57,7 @@ public class Customer {
         this.numOfTicketsBookedByUser = new ArrayList<>();
     }
 
-    /**
-     * Takes input for the new customer and adds them to programs memory.
-     * isUniqueData() validates the entered email
-     * and returns true if the entered email is already registered. If email is
-     * already registered, program will ask the user
-     * to enter new email address to get himself register.
-     */
+
 
     /**
      * Returns String consisting of customers data(name, age, email etc...) for
@@ -127,8 +124,16 @@ public class Customer {
         return flightsRegisteredByUser;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -151,16 +156,8 @@ public class Customer {
         return userID;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public List<Integer> getNumOfTicketsBookedByUser() {
         return numOfTicketsBookedByUser;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setEmail(String email) {
